@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Upload, Download, MessageCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { Upload, Download, MessageCircle } from 'lucide-react';
 import { useDarkMode } from './hooks/useDarkMode';
 import CSVUploader from './components/CSVUploader';
-import { ProgressLogger } from './components/ProgressLogger';
+import ProgressLogger from './components/ProgressLogger';
 import GameProcessor from './components/GameProcessor';
 import DarkModeToggle from './components/DarkModeToggle';
 
@@ -15,7 +15,7 @@ interface Game {
 }
 
 function App() {
-  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  const [isDarkMode, toggleDarkMode] = useDarkMode();
   const [games, setGames] = useState<Game[]>([]);
   const [processedGames, setProcessedGames] = useState<Game[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -97,7 +97,7 @@ function App() {
               </p>
             </div>
           </div>
-          <DarkModeToggle isDarkMode={isDarkMode} onToggle={toggleDarkMode} />
+          <DarkModeToggle isDark={isDarkMode} onToggle={toggleDarkMode} />
         </div>
 
         {/* Main Content */}
@@ -114,7 +114,7 @@ function App() {
                 <Upload className="w-5 h-5 mr-2 text-blue-500" />
                 Subir CSV
               </h2>
-              <CSVUploader onUpload={handleCSVUpload} />
+              <CSVUploader onLoad={handleCSVUpload} />
               
               {games.length > 0 && (
                 <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">

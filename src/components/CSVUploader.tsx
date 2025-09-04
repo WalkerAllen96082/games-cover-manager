@@ -188,6 +188,7 @@ export default function CSVUploader({ onLoad }: CSVUploaderProps) {
                   type="file"
                   accept=".csv"
                   className="sr-only"
+                  data-testid="file-upload"
                   onChange={handleChange}
                 />
               </label>
@@ -197,7 +198,7 @@ export default function CSVUploader({ onLoad }: CSVUploaderProps) {
         </div>
 
         {error && (
-          <div className="mt-4 p-4 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-xl">
+          <div role="alert" className="mt-4 p-4 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 rounded-xl">
             <div className="flex items-start">
               <AlertTriangle className="h-5 w-5 text-red-500 dark:text-red-400 flex-shrink-0" />
               <div className="ml-3">
